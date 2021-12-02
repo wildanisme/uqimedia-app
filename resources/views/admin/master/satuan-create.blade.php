@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('title')
+    {{ $web['site'] }} | {{ $web['page'] }}
+@endsection
 @section('content')
 
     <div class="card">

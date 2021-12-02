@@ -16,18 +16,27 @@ class MstProductController extends Controller
 {
     public function index()
     {
+        abort_if(Gate::denies('product_access'), Response::HTTP_FORBIDDEN, 'Forbidden');
+
+        $web = [
+            'site' => 'UQIMEDIA App',
+            'page' => 'Produk'
+        ];
         $product = Product::with(['satuan'])->get();
 
-        return view('admin.master.product-index', compact('product'));
+        return view('admin.master.product-index', compact('product', 'web'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('product_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
-
+        $web = [
+            'site' => 'UQIMEDIA App',
+            'page' => 'Tambah Produk'
+        ];
         $satuan = Satuan::all();
 
-        return view('admin.master.product-create', compact('satuan'));
+        return view('admin.master.product-create', compact('satuan', 'web'));
     }
 
     public function store(Request $request)
@@ -55,11 +64,14 @@ class MstProductController extends Controller
     public function edit($id)
     {
         abort_if(Gate::denies('product_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
-
+        $web = [
+            'site' => 'UQIMEDIA App',
+            'page' => 'Edit Produk'
+        ];
         $product = Product::findOrFail($id);
         $satuan = Satuan::all();
 
-        return view('admin.master.product-edit', compact('satuan', 'product'));
+        return view('admin.master.product-edit', compact('satuan', 'product', 'web'));
     }
 
     public function update(Request $request, $id)
@@ -79,6 +91,10 @@ class MstProductController extends Controller
 
     public function destroy($id)
     {
-        //
+        abort_if(Gate::denies('product_delete'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('admin.product.index')->with('status-success', 'Produk Berhasil Dihapus');
     }
 }

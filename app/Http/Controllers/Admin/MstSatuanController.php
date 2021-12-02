@@ -16,11 +16,15 @@ class MstSatuanController extends Controller
     public function index()
     {
         abort_if(Gate::denies('satuan_access'), Response::HTTP_FORBIDDEN, 'Forbidden');
-        $satuan = Satuan::all();
+        $web = [
+            'site' => 'UQIMEDIA App',
+            'page' => 'Satuan'
+        ];
 
+        $satuan = Satuan::all();
         $satuan_trash = Satuan::withTrashed()->get();
 
-        return view('admin.master.satuan-index', compact('satuan', 'satuan_trash'));
+        return view('admin.master.satuan-index', compact('satuan', 'satuan_trash', 'web'));
     }
 
     /**
@@ -31,8 +35,12 @@ class MstSatuanController extends Controller
     public function create()
     {
         abort_if(Gate::denies('satuan_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $web = [
+            'site' => 'UQIMEDIA App',
+            'page' => 'Tambahlan Satuan'
+        ];
 
-        return view('admin.master.satuan-create');
+        return view('admin.master.satuan-create', compact('web'));
     }
 
     public function store(StoreMstSatuanRequest $request)
@@ -50,9 +58,13 @@ class MstSatuanController extends Controller
 
     public function edit($id)
     {
+        $web = [
+            'site' => 'UQIMEDIA App',
+            'page' => 'Edit Satuan'
+        ];
         $satuan = Satuan::findOrFail($id);
 
-        return view('admin.master.satuan-edit', compact('satuan'));
+        return view('admin.master.satuan-edit', compact('satuan', 'web'));
     }
 
     public function update(UpdateMstSatuanRequest $request, $id)
