@@ -23,6 +23,8 @@ class MstProductController extends Controller
 
     public function create()
     {
+        abort_if(Gate::denies('product_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
+
         $satuan = Satuan::all();
 
         return view('admin.master.product-create', compact('satuan'));
@@ -52,6 +54,8 @@ class MstProductController extends Controller
 
     public function edit($id)
     {
+        abort_if(Gate::denies('product_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
+
         $product = Product::findOrFail($id);
         $satuan = Satuan::all();
 
