@@ -30,7 +30,13 @@ class MstProductController extends Controller
 
     public function store(Request $request)
     {
-        DB::table('mst_product')->insert([
+        $request->validate([
+            'nama' => 'string|required',
+            'satuan' => 'numeric|required',
+            'harga' => 'numeric|required'
+        ]);
+
+        Product::create([
             'nama' => $request->nama,
             'id_satuan' => $request->satuan,
             'harga' => $request->harga
@@ -46,12 +52,25 @@ class MstProductController extends Controller
 
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $satuan = Satuan::all();
+
+        return view('admin.master.product-edit', compact('satuan', 'product'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $data = $request->validate([
+            'nama' => 'string|required',
+            'satuan' => 'numeric|required',
+            'harga' => 'numeric|required'
+        ]);
+
+        $product->update($data);
+
+        return redirect()->route('admin.product.index')->with('status-success', 'Produk Berhasil Diedit');
     }
 
     public function destroy($id)
