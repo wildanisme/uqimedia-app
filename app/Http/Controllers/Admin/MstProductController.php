@@ -46,7 +46,7 @@ class MstProductController extends Controller
             'satuan' => 'numeric|required',
             'harga' => 'numeric|required'
         ]);
-
+        $data = $request->all();
         Product::create([
             'nama' => $request->nama,
             'id_satuan' => $request->satuan,
