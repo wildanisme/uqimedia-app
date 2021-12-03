@@ -13,15 +13,13 @@
             @endcan
 
             <br /><br />
-                <table class="table table-borderless table-hover">
+                <table class="table table-borderless table-hover" id="tablePelanggan">
                   <tr class="bg-info text-light">
                       <th class="text-center">ID</th>
                       <th>Nama Pelanggan</th>
                       <th>Alamat</th>
                       <th>No Telepon</th>
-                      <th>
-                          &nbsp;
-                      </th>
+                      <th>Aksi</th>
                   </tr>
                     @forelse ($pelanggan as $value)
                         <tr>
@@ -56,5 +54,12 @@
 
         </div>
     </div>
+@endsection
 
+@section('scripts')
+    <script>
+        $(document).ready( function () {
+            $('#tablePelanggan').DataTable();
+        } );
+    </script>
 @endsection

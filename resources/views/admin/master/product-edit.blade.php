@@ -11,7 +11,6 @@
         <form method="POST" action="{{ route('admin.product.update', $product->id) }}">
             @csrf
             @method('PUT')
-
             <div class="form-group row">
                 <label for="nama_product" class="col-md-4 col-form-label text-md-right">{{ __('Nama Produk') }}</label>
                 <div class="col-md-6">

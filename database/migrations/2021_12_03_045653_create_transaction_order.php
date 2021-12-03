@@ -15,7 +15,12 @@ class CreateTransactionOrder extends Migration
     {
         Schema::create('transaction_order', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_product');
+            $table->string('no_invoice');
+            $table->dateTime('tgl_transaksi');
+            $table->integer('id_pelanggan');
+            $table->integer('id_kasir');
+            $table->integer('total_harga');
+            $table->integer('total_bayar')->nullable(true);
             $table->timestamps();
             $table->softDeletes();
         });
