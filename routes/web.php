@@ -28,9 +28,17 @@ Route::group(['prefix' => "admin", 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Route::resource('/users', 'UserController');
-    Route::resource('/roles', 'RoleController');
-    Route::resource('/permissions', 'PermissionController')->except(['show']);
-    Route::resource('/satuan', 'MstSatuanController');
-    Route::resource('/product', 'MstProductController');
+    //Prefix ACL
+    Route::prefix('acl')->group(function () {
+        Route::resource('/users', 'UserController');
+        Route::resource('/roles', 'RoleController');
+        Route::resource('/permissions', 'PermissionController')->except(['show']);
+    });
+
+    //prefix Master
+    Route::prefix('master')->group(function () {
+        Route::resource('/satuan', 'MstSatuanController');
+        Route::resource('/product', 'MstProductController');
+        Route::resource('/pelanggan', 'MstPelangganController');
+    });
 });

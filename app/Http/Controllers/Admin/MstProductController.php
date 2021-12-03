@@ -8,9 +8,6 @@ use App\Models\Mst\Satuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Response;
-use App\Http\Requests\StoreMstProductRequest;
-use App\Http\Requests\UpdateMstProductRequest;
-use DB;
 
 class MstProductController extends Controller
 {
@@ -46,12 +43,17 @@ class MstProductController extends Controller
             'satuan' => 'numeric|required',
             'harga' => 'numeric|required'
         ]);
-        $data = $request->all();
-        Product::create([
-            'nama' => $request->nama,
-            'id_satuan' => $request->satuan,
-            'harga' => $request->harga
-        ]);
+
+        $product = new Product;
+        $product->nama = $request->nama;
+        $product->id_satuan = $request->satuan;
+        $product->harga = $request->harga;
+        $product->save();
+        // Product::create([
+        //     'nama' => $request->nama,
+        //     'id_satuan' => $request->satuan,
+        //     'harga' => $request->harga
+        // ]);
 
         return redirect()->route('admin.product.index')->with('status-success', 'New Product Created');
     }

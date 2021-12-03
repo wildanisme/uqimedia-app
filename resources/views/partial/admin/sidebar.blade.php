@@ -20,7 +20,7 @@
                         </li>
                         @endcan
 
-                        @canany(['product_access','satuan_access'])
+                    @canany(['product_access','satuan_access','pelanggan_access'])
                         <li class="sidebar-item">
 
                             <a class="sidebar-link has-arrow waves-effect waves-dark selected" href="javascript:void(0)" aria-expanded="false">
@@ -29,15 +29,52 @@
                                 <span class="hide-menu">Master</span>
                             </a>
                             <ul aria-expanded="false" class="collapse first-level
+                                @if(request()->is('admin/master/product') || request()->is('admin/master/product/*')) in @endif
+                                @if(request()->is('admin/master/satuan') || request()->is('admin/master/satuan/*')) in @endif
+                                @if(request()->is('admin/master/pelanggan') || request()->is('admin/master/pelanggan/*')) in @endif
+                            ">
+                                @can('product_access')
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/master/product') || request()->is('admin/master/product/*')) is_active @endif" href="{{ route('admin.product.index') }}" aria-expanded="false">
+                                            <i class="mr-3 mdi mdi-account-multiple" aria-hidden="true"></i>
+                                            <span class="hide-menu">Produk</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('satuan_access')
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/master/satuan') || request()->is('admin/master/satuan/*')) is_active @endif" href="{{ route('admin.satuan.index') }}" aria-expanded="false">
+                                            <i class="mr-3 mdi mdi-star" aria-hidden="false"></i>
+                                            <span class="hide-menu">Satuan</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('pelanggan_access')
+                                    <li class="sidebar-item">
+                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/master/pelanggan') || request()->is('admin/master/pelanggan/*')) is_active @endif" href="{{ route('admin.pelanggan.index') }}" aria-expanded="false">
+                                            <i class="mr-3 mdi mdi-star" aria-hidden="false"></i>
+                                            <span class="hide-menu">Pelanggan</span>
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany                    
+                    {{-- @canany(['order_access','purchase_access'])
+                        <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark selected" href="javascript:void(0)" aria-expanded="false">
+                                <i class="mr-3 mdi mdi-account" aria-hidden="true"></i>
+                                <span class="hide-menu">Transaksi</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse first-level
                                 @if(request()->is('admin/product') || request()->is('admin/product/*')) in @endif
                                 @if(request()->is('admin/satuan') || request()->is('admin/satuan/*')) in @endif
-                                {{-- @if(request()->is('master/permissions') || request()->is('master/permissions/*')) in @endif --}}
                             ">
                                 @can('product_access')
                                     <li class="sidebar-item">
                                         <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/product') || request()->is('master/product/*')) is_active @endif" href="{{ route('admin.product.index') }}" aria-expanded="false">
                                             <i class="mr-3 mdi mdi-account-multiple" aria-hidden="true"></i>
-                                            <span class="hide-menu">Produk</span>
+                                            <span class="hide-menu">Penjualan</span>
                                         </a>
                                     </li>
                                 @endcan
@@ -46,29 +83,27 @@
                                     <li class="sidebar-item">
                                         <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/satuan') || request()->is('admin/satuan/*')) is_active @endif" href="{{ route('admin.satuan.index') }}" aria-expanded="false">
                                             <i class="mr-3 mdi mdi-star" aria-hidden="false"></i>
-                                            <span class="hide-menu">Satuan</span>
+                                            <span class="hide-menu">Pembelian</span>
                                         </a>
                                     </li>
                                 @endcan
                             </ul>
                         </li>
-                    @endcanany                    
+                    @endcanany                     --}}
                     @canany(['users_access','roles_access','permissions_access'])
                         <li class="sidebar-item">
-
                             <a class="sidebar-link has-arrow waves-effect waves-dark selected" href="javascript:void(0)" aria-expanded="false">
-
                                 <i class="mr-3 mdi mdi-account" aria-hidden="true"></i>
                                 <span class="hide-menu">Users Management</span>
                             </a>
                             <ul aria-expanded="false" class="collapse first-level
-                                @if(request()->is('admin/users') || request()->is('admin/users/*')) in @endif
-                                @if(request()->is('admin/roles') || request()->is('admin/roles/*')) in @endif
-                                @if(request()->is('admin/permissions') || request()->is('admin/permissions/*')) in @endif
+                                @if(request()->is('admin/acl/users') || request()->is('admin/acl/users/*')) in @endif
+                                @if(request()->is('admin/acl/roles') || request()->is('admin/acl/roles/*')) in @endif
+                                @if(request()->is('admin/acl/permissions') || request()->is('admin/acl/permissions/*')) in @endif
                             ">
                                 @can('users_access')
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/users') || request()->is('admin/users/*')) is_active @endif" href="{{ route('admin.users.index') }}" aria-expanded="false">
+                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/acl/users') || request()->is('admin/users/*')) is_active @endif" href="{{ route('admin.users.index') }}" aria-expanded="false">
                                             <i class="mr-3 mdi mdi-account-multiple" aria-hidden="true"></i>
                                             <span class="hide-menu">Users</span>
                                         </a>
@@ -77,7 +112,7 @@
 
                                 @can('roles_access')
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/roles') || request()->is('admin/roles/*')) is_active @endif" href="{{ route('admin.roles.index') }}" aria-expanded="false">
+                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/acl/roles') || request()->is('admin/roles/*')) is_active @endif" href="{{ route('admin.roles.index') }}" aria-expanded="false">
                                             <i class="mr-3 mdi mdi-star" aria-hidden="false"></i>
                                             <span class="hide-menu">Roles</span>
                                         </a>
@@ -86,7 +121,7 @@
 
                                 @can('permissions_access')
                                     <li class="sidebar-item">
-                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/permissions') || request()->is('admin/permissions/*')) is_active @endif" href="{{ route('admin.permissions.index') }}" aria-expanded="false">
+                                        <a class="sidebar-link waves-effect waves-dark  @if(request()->is('admin/acl/permissions') || request()->is('admin/permissions/*')) is_active @endif" href="{{ route('admin.permissions.index') }}" aria-expanded="false">
                                             <i class="mr-3 mdi mdi-key" aria-hidden="false"></i>
                                             <span class="hide-menu">Permissions</span>
                                         </a>
