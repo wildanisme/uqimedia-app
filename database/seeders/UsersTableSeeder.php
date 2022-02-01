@@ -16,15 +16,15 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'name' => 'Super Admin',
-            'email' => 'admin@uqimedia.com',
-            'password' => bcrypt('secret'),
+            'username' => 'admin',
+            'password' => bcrypt('12345'),
             'role_id' => '1'
         ]);
 
         User::create([
-            'name' => 'User',
-            'email' => 'user@user.com',
-            'password' => bcrypt('secret'),
+            'name' => 'Kasir Satu',
+            'username' => 'kasir',
+            'password' => bcrypt('12345'),
             'role_id' => '2'
         ]);
     }

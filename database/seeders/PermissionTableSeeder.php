@@ -86,15 +86,50 @@ class PermissionTableSeeder extends Seeder
             [
                 'name' => 'permission_create',
             ],
+            //product permissions
+            [
+                'name' => 'product_access'
+            ],
+            [
+                'name' => 'product_edit'
+            ],
+            [
+                'name' => 'product_delete'
+            ],
+            [
+                'name' => 'product_create'
+            ],
 
-
-
-
+            //satuan permissions
+            [
+                'name' => 'denomination_access'
+            ],
+            [
+                'name' => 'denomination_edit'
+            ],
+            [
+                'name' => 'denomination_delete'
+            ],
+            [
+                'name' => 'denomination_create'
+            ],
+            //pelanggan permissions
+            [
+                'name' => 'customer_access'
+            ],
+            [
+                'name' => 'customer_edit'
+            ],
+            [
+                'name' => 'customer_delete'
+            ],
+            [
+                'name' => 'customer_create'
+            ],
         ];
 
-        foreach($permissions as $permission){
+        foreach ($permissions as $permission) {
             Permission::create($permission);
         }
-
     }
 }

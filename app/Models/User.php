@@ -20,7 +20,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
         'password',
         'role_id',
     ];
@@ -51,21 +51,22 @@ class User extends Authenticatable
         }
     }
 
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 
 
-    static function boot(){
+    static function boot()
+    {
         parent::boot();
 
-        static::created(function(Model $model){
-            if($model->role_id == ""){
+        static::created(function (Model $model) {
+            if ($model->role_id == "") {
                 $model->update([
-                    'role_id' => Role::where('title','user')->first()->id,
+                    'role_id' => Role::where('title', 'user')->first()->id,
                 ]);
             }
         });
-
     }
 }

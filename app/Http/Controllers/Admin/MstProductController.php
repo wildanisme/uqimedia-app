@@ -19,9 +19,10 @@ class MstProductController extends Controller
             'site' => 'UQIMEDIA App',
             'page' => 'Produk'
         ];
+        $satuan = Satuan::all();
         $product = Product::with(['satuan'])->get();
 
-        return view('admin.master.product-index', compact('product', 'web'));
+        return view('admin.master.product-index', compact('product', 'satuan', 'web'));
     }
 
     public function create()

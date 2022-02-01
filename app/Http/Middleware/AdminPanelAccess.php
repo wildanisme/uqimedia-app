@@ -17,7 +17,7 @@ class AdminPanelAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::denies('admin_panel_access')){
+        if (Gate::denies('admin_panel_access')) {
             return redirect('/');
         }
         return $next($request);
