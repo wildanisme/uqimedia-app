@@ -20,9 +20,9 @@ class PermissionController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('permissions_access'), Response::HTTP_FORBIDDEN, 'Forbidden');
-
+        $title = 'Index Permission';
         $permissions = Permission::paginate(15)->appends($request->query());;
-        return view('admin.permissions.index', compact('permissions'));
+        return view('admin.permissions.index', compact('permissions', 'title'));
     }
 
     /**
@@ -32,9 +32,9 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('permission_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
-
-        return view('admin.permissions.create');
+        abort_if(Gate::denies('permissions_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $title = 'Tambah Permission';
+        return view('admin.permissions.create', compact('title'));
     }
 
     /**
@@ -59,9 +59,9 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        abort_if(Gate::denies('permission_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
-
-        return view('admin.permissions.edit', compact('permission'));
+        abort_if(Gate::denies('permissions_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $title = 'Edit Permission';
+        return view('admin.permissions.edit', compact('permission', 'title'));
     }
 
     /**
@@ -86,7 +86,7 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        abort_if(Gate::denies('permission_delete'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        abort_if(Gate::denies('permissions_delete'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
         $permission->delete();
 

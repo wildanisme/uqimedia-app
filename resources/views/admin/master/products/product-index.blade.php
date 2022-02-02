@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    {{ $web['site'] }} | {{ $web['page'] }}
+    {{ $title }}
 @endsection
 @section('content')
 <div class="content-header">    
@@ -60,10 +60,10 @@
                                         <td>{{$value->satuan->nama}}</td>
                                         <td>{{$value->harga}}</td>
                                         <td>
-                                            @can('product_edit')
+                                            @can('products_edit')
                                                 <a href="{{ route('admin.product.edit', $value->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
                                             @endcan
-                                            @can('product_delete')
+                                            @can('products_delete')
                                             <form action="{{ route('admin.product.destroy', $value->id) }}" class="d-inline-block" method="post">
                                                 @csrf
                                                 @method('DELETE')

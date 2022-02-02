@@ -24,7 +24,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Users List</h3>
                         <div class="card-tools">
-                            @can('product_create')
+                            @can('products_create')
                             <a href="{{ route('admin.users.create') }}" class="btn btn-sm btn-outline-primary">Add New Product</a>
                             @endcan
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -55,13 +55,13 @@
                                         <td>{{$user->username}}</td>
                                         <td>{{$user->role->title ?? "--"}}</td>
                                         <td>
-                                        @can('user_show')
+                                        @can('users_show')
                                             <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-sm btn-outline-success">Show</a>
                                         @endcan
-                                        @can('user_edit')
+                                        @can('users_edit')
                                             <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
                                         @endcan
-                                        @can('user_delete')
+                                        @can('users_delete')
                                             <form action="{{ route('admin.users.destroy', $user->id) }}" class="d-inline-block" method="post">
                                                 @csrf
                                                 @method('DELETE')

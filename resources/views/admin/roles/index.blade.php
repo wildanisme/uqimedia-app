@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('title')
+    {{$title}}
+@endsection
 @section('content')
 <div class="content-header">    
     <div class="container-fluid">
@@ -16,7 +18,7 @@
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
-</div>
+</div> 
 
 <section class="content">
     <div class="container-fluid">
@@ -26,7 +28,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Index Roles</h3>
                         <div class="card-tools">
-                            @can('role_create')
+                            @can('roles_create')
                             <a href="{{ route('admin.roles.create') }}" class="btn btn-sm btn-outline-primary">Tambah Role Baru</a>
                             @endcan
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -56,13 +58,13 @@
                                         <td>{{$role->title}}</td>
                                         <td>{{$role->short_code ?? '--'}}</td>
                                         <td>
-                                            @can('role_show')
+                                            @can('roles_show')
                                             <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-sm btn-outline-success">View</a>
                                             @endcan
-                                            @can('role_edit')
+                                            @can('roles_edit')
                                             <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm btn-outline-warning">Edit</a>
                                             @endcan
-                                            @can('role_delete')
+                                            @can('roles_delete')
                                             <form action="{{ route('admin.roles.destroy', $role->id) }}" class="d-inline-block" method="post">
                                                 @csrf
                                                 @method('DELETE')

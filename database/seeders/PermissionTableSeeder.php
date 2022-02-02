@@ -30,19 +30,19 @@ class PermissionTableSeeder extends Seeder
             ],
 
             [
-                'name' => 'user_edit',
+                'name' => 'users_edit',
             ],
 
             [
-                'name' => 'user_delete',
+                'name' => 'users_delete',
             ],
 
             [
-                'name' => 'user_create',
+                'name' => 'users_create',
             ],
 
             [
-                'name' => 'user_show',
+                'name' => 'users_show',
             ],
 
 
@@ -53,19 +53,19 @@ class PermissionTableSeeder extends Seeder
             ],
 
             [
-                'name' => 'role_edit',
+                'name' => 'roles_edit',
             ],
 
             [
-                'name' => 'role_delete',
+                'name' => 'roles_delete',
             ],
 
             [
-                'name' => 'role_create',
+                'name' => 'roles_create',
             ],
 
             [
-                'name' => 'role_show',
+                'name' => 'roles_show',
             ],
 
 
@@ -88,43 +88,30 @@ class PermissionTableSeeder extends Seeder
             ],
             //product permissions
             [
-                'name' => 'product_access'
+                'name' => 'products_access'
             ],
             [
-                'name' => 'product_edit'
+                'name' => 'products_edit'
             ],
             [
-                'name' => 'product_delete'
+                'name' => 'products_delete'
             ],
             [
-                'name' => 'product_create'
+                'name' => 'products_create'
             ],
 
-            //satuan permissions
-            [
-                'name' => 'denomination_access'
-            ],
-            [
-                'name' => 'denomination_edit'
-            ],
-            [
-                'name' => 'denomination_delete'
-            ],
-            [
-                'name' => 'denomination_create'
-            ],
             //pelanggan permissions
             [
-                'name' => 'customer_access'
+                'name' => 'customers_access'
             ],
             [
-                'name' => 'customer_edit'
+                'name' => 'customers_edit'
             ],
             [
-                'name' => 'customer_delete'
+                'name' => 'customers_delete'
             ],
             [
-                'name' => 'customer_create'
+                'name' => 'customers_create'
             ],
         ];
 

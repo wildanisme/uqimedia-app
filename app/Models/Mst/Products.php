@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Pelanggan extends Model
+class Products extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'mst_pelanggan';
+    protected $table = 'mst_products';
     protected $guarded = [];
     protected $fillable = [
-        'nama', 'alamat', 'no_telp'
+        'nama', 'satuan', 'harga'
     ];
 }

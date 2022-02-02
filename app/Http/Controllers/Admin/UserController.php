@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        abort_if(Gate::denies('user_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        abort_if(Gate::denies('users_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
         $roles = Role::pluck('title', 'id');
         return view('admin.users.create', compact('roles'));
@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        abort_if(Gate::denies('users_show'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
         return view('admin.users.show', compact('user'));
     }
@@ -76,7 +76,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        abort_if(Gate::denies('user_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        abort_if(Gate::denies('users_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
         $roles = Role::pluck('title', 'id');
         return view('admin.users.edit', compact('user', 'roles'));
@@ -105,7 +105,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        abort_if(Gate::denies('users_delete'), Response::HTTP_FORBIDDEN, 'Forbidden');
 
         $user->delete();
         return redirect()->back()->with(['status-success' => "User Deleted"]);

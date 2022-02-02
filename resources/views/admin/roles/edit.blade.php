@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-
+@section('title')
+    {{$title}}
+@endsection
 @section('content')
 <div class="content-header">    
     <div class="container-fluid">

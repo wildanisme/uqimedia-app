@@ -37,8 +37,8 @@ Route::group(['prefix' => "admin", 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
     //prefix Master
     Route::prefix('master')->group(function () {
-        Route::resource('/satuan', 'MstSatuanController');
-        Route::resource('/product', 'MstProductController');
-        Route::resource('/pelanggan', 'MstPelangganController');
+        Route::resource('/satuan', 'Master\MstSatuanController');
+        Route::resource('/product', 'Master\MstProductController');
+        Route::resource('/pelanggan', 'Master\MstCustomersController');
     });
 });

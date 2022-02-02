@@ -21,10 +21,10 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('roles_access'), Response::HTTP_FORBIDDEN, 'Forbidden');
-
+        $title = 'Index Roles';
         $roles = Role::with('permissions')->paginate(5)->appends($request->query());;
 
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.roles.index', compact('roles', 'title'));
     }
 
     /**
@@ -35,9 +35,10 @@ class RoleController extends Controller
     public function create()
     {
         abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $title = 'Tambah Role';
         $permissions = Permission::all()->pluck('name', 'id');
 
-        return view('admin.roles.create', compact('permissions'));
+        return view('admin.roles.create', compact('permissions', 'title'));
     }
 
     /**
@@ -64,8 +65,8 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         abort_if(Gate::denies('role_show'), Response::HTTP_FORBIDDEN, 'Forbidden');
-
-        return view('admin.roles.show', compact('role'));
+        $title = 'Detail Role';
+        return view('admin.roles.show', compact('role', 'title'));
     }
 
 
@@ -78,9 +79,10 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         abort_if(Gate::denies('role_edit'), Response::HTTP_FORBIDDEN, 'Forbidden');
+        $title = 'Edit Role';
         $permissions = Permission::all()->pluck('name', 'id');
 
-        return view('admin.roles.edit', compact('role', 'permissions'));
+        return view('admin.roles.edit', compact('role', 'permissions', 'title'));
     }
 
     /**
